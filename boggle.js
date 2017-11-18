@@ -1,10 +1,12 @@
+
+
 class Boggle{
-  constructor(rowLength, colLength, arrBoard=[], library=[]){
+  constructor(rowLength, colLength, libraryName='./data.js', arrBoard=[], library=[]){
     this.board = arrBoard;
-    this.library = library;
+    this.libraryName = libraryName;
+    this.library = library
     this.colLength = colLength;
     this.rowLength = rowLength;
-
 
   }
 
@@ -22,15 +24,18 @@ class Boggle{
     this.board = arrBoard
   }
 
+  setLibrary(){
+    var fs = require('fs');
+    var lib = require(this.libraryName).words
+
+    this.library = lib;
+  }
  
 
-  getNextAdjacent(){
-    //mengembalikan array huruf-huruf bersebelahan yang dapat digunakan untuk boggle
-
+  getNextAdjacent(currentRow, currentCol, ignores){
+    //returns array of characters that is adjacent to the current cell, except thoose which has been visited 
 
   }
-
-
 
 
 }
@@ -38,6 +43,8 @@ class Boggle{
 
 // DRIVER
 
-var game = new Boggle(4,4);
+var game = new Boggle(4,4, './dataWahib.js');
 game.shake();
 console.log(game.board)
+game.setLibrary();
+console.log(game.library);
