@@ -2,7 +2,7 @@ class BoggleBoard {
 	constructor(){
 		this.board = [];
 		this.abjad = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', "Y", 'Z'];
-		this.kamus = 'LPSEN'
+		this.kamus = 'LPSN'
 	}
 	shake(luas){
 		for (var i = 0; i < luas; i++) {
@@ -15,7 +15,7 @@ class BoggleBoard {
 		return this.board;
 	}
 	pasti(){
-		let str = 'DMHIKLPSGEUETORN'
+		let str = 'DMHIKLPSGEEUTORN'
 		let strCount = 0;
 		for (var i = 0; i < 4; i++) {
 			this.board.push([])
@@ -27,11 +27,18 @@ class BoggleBoard {
 		return this.board;
 	}
 	checkArea(kata, col, row){
-		for (var i = col-1; i < col+2; i++) {
-  			for (var j = row-1; j < row+2; j++) {
+
+		for (var i = col-1; i < (col+2); i++) {
+  			for (var j = row-1; j < (row+2); j++) {
   				if (kata == this.board[i][j]) {
   					return true;
   				}
+  				if (j > this.board[i].length-1) {
+  					break;
+  				}
+  			}
+  			if (i > this.board[i].length-1) {
+  				break;
   			}
   		}
   		return false;
@@ -45,6 +52,7 @@ class BoggleBoard {
 				}
 			}
 		}
+		return false;
 	}
 	solve(){
 		let ij = 0;
@@ -52,15 +60,20 @@ class BoggleBoard {
 		let row = 0;
 		for (var i = 0; i < this.kamus.length; i++) {
 			if (i == 0) {
-				ij = this.checkKata(this.kamus[i]).split('|')
-				col = ij[0];
-				row = ij[1];
+				if (this.checkKata(this.kamus[i]) != false) {
+					ij = this.checkKata(this.kamus[i]).split('|')
+					col = Number(ij[0]);
+					row = Number(ij[1]);
+				}
+				else {
+					return false;					
+				}				
 			}
 			if (i > 0) {
 				if (this.checkArea(this.kamus[i], col, row)){
 					ij = this.checkKata(this.kamus[i]).split('|')
-					col = ij[0];
-					row = ij[1];
+					col = Number(ij[0]);
+					row = Number(ij[1]);
 				}
 				else {
 					return false
