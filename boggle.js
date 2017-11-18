@@ -62,6 +62,20 @@ class Boggle{
     }
   }
 
+  solveAllBoggle(){
+    let arrResult = []
+    for (let i = 0 ; i < this.rowLength ; i++){
+      for (let j = 0 ; j < this.colLength ; j++){
+        arrResult = arrResult.concat(this.solveBoggle(i,j))
+      }
+    }
+    console.log('WORDS FOUND : ', arrResult.length);
+    for (let i = 0; i <arrResult.length; i ++){
+      console.log(arrResult[i])
+    }
+
+  }
+
   getLibMatch(word){
     //returns word that mathces the library
     for (let i = 0; i < this.library.length; i++){
@@ -100,4 +114,5 @@ var game = new Boggle(4,4, './dataWahib.js', testBoard);
 //game.shake();
 console.log(game.board)
 game.setLibrary();
-console.log(game.solveBoggle());
+console.log(game.board)
+game.solveAllBoggle();
