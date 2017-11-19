@@ -1,12 +1,11 @@
 class Boggle {
   constructor() {
-    this.dictionary = this.getDictionary();
     this.board = [];
-    console.log(this.dictionary);
+    this.dictionary = this.getDictionary();
   }
 
   getDictionary() {
-
+    return require('./data');
   }
 
   display() {
@@ -41,17 +40,7 @@ class Boggle {
   }
 }
 
-var fs = require('fs');
-fs.readFile('data.js', function (err, data) {
-  content = data.toString().split('"')
-    .join('').split(']').join('').split('[')
-    .join('').split('var words = ').join('').split(',');
-  console.log(content);
-});
-
-
 var test = new Boggle();
 test.shake(4);
 test.display();
 test.solve();
-test.getDictionary();
