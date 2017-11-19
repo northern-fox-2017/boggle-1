@@ -1,6 +1,12 @@
 class Boggle {
   constructor() {
+    this.dictionary = this.getDictionary();
     this.board = [];
+    console.log(this.dictionary);
+  }
+
+  getDictionary() {
+
   }
 
   display() {
@@ -25,13 +31,27 @@ class Boggle {
         }
       }
       return this.board;
-    }
-    else{
+    } else {
       console.log('Papan minimal harus 4X4');
     }
   }
+
+  solve() {
+    console.log(this.board);
+  }
 }
+
+var fs = require('fs');
+fs.readFile('data.js', function (err, data) {
+  content = data.toString().split('"')
+    .join('').split(']').join('').split('[')
+    .join('').split('var words = ').join('').split(',');
+  console.log(content);
+});
+
 
 var test = new Boggle();
 test.shake(4);
 test.display();
+test.solve();
+test.getDictionary();
