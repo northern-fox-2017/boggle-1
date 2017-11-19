@@ -5,36 +5,73 @@ const random = require('./randomKata.js')
 class Boggle {
   constructor() {
     this.kata = kata
+    this.arr  = []
+    this.array = [];
   }
 
   shake(barisKolom) {
-    let arr = [];
-
     for(let i = 0 ; i < barisKolom ; i++) {
-      arr.push([])
+      this.arr.push([])
         for(let j = 0 ; j < barisKolom ; j++) {
-          arr[i].push(random())
+          this.arr[i].push(random())
         }
     }
-    console.log(arr);
+    console.log(this.arr);
   }
 
-  genereateKamusData() {
-    let array = [];
+  generateKamusData() {
     for(let i = 0 ; i < 5 ; i++) {
       let random = Math.floor(Math.random() * this.kata.length);
-        array.push(this.kata[random])
+        this.array.push(this.kata[random])
     }
-    console.log(array);
+    console.log(this.array);
   }
 
-  solve() {
-    
+  checkHuruf() {
+    let arr = [];
+    let tampung = '';
+    let startBaris = 0;
+    let startKolom = 0;
+    for(let i = 0 ; i < this.arr.length ; i++) {
+      for(let j = 0 ; j < this.array.length ; j++) {
+        if(this.arr[i][j] == this.array[0][0]) {
+          if(this.arr[i][j] < this.arr[1][1]) {
+            startBaris = 0;
+            startKolom = 0;
+          } else if(this.arr[i][j] < this.arr[2][2]) {
+            startBaris = 1;
+            startKolom = 1;
+          } else if(this.arr[i][j] < this.arr[3][3]) {
+            startBaris = 2;
+            startKolom = 2;
+          } else if(this.arr[i][j] < this.arr[4][4]) {
+            startBaris = 3;
+            startKolom = 4;
+          }
+      }
+    }
   }
+  console.log(arr);
+}
+
+  // checkPosisiAtas(baris, kolom) {
+  //   let startBaris  = 0;
+  //   let finishBaris = 0;
+  //   let startKolom  = 0;
+  //   let finishKolom = 0;
+  //   if(baris == 0 && kolom == 0) {
+  //     startBaris  = 0;
+  //     finsihBaris = 1;
+  //     startKolom  = 0;
+  //     finishKolom = 1;
+  //   }
+  // }
 
 }
 
 let boggle = new Boggle()
 
 boggle.shake(4);
-boggle.genereateKamusData();
+boggle.generateKamusData();
+boggle.checkHuruf()
+// boggle.checkPosisiAtas(0,0)

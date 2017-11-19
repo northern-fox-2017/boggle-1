@@ -1,5 +1,5 @@
 function randomKata() {
-  let kata = 'abcdefghijklmnopqrstuvwxyz'
+  let kata = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
   let random = Math.floor(Math.random() * kata.length)
   return kata[random]
 }
