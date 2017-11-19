@@ -1,4 +1,4 @@
-
+//Boggle Solver by Haniiful Wahib
 
 class Boggle{
   constructor(rowLength, colLength, libraryName='./data.js', arrBoard=[], library=[]){
@@ -7,7 +7,6 @@ class Boggle{
     this.library = library
     this.colLength = colLength;
     this.rowLength = rowLength;
-
   }
 
   shake(){
@@ -31,14 +30,10 @@ class Boggle{
     this.library = lib;
   }
  
-
   solveBoggle(currentRow=0, currentCol=0, currentWord='' ,ignores = []){
-    //returns array of characters that is adjacent to the current cell, except thoose which has been visited 
+    // Solve single cell Boggle
     let currentChar = this.board[currentRow][currentCol];
-    
-
     if ( this.isIgnore(currentRow, currentCol, ignores) ){
-      //console.log('-----')
       return []
     } else{
       let arrBoggles = [];
@@ -46,19 +41,16 @@ class Boggle{
       if (this.getLibMatch(currentWord) !== ''){
         arrBoggles.push(currentWord)  
       }
-      
       for (let i = currentRow - 1; i <= currentRow+1 ; i++){
         for (let j= currentCol -1 ; j <= currentCol+1 ; j++){
-          // console.log(currentWord, '>> ',currentChar,' ', ignores[ignores.length-1], ignores[ignores.length-2], ' ',currentRow, currentCol)
           if (i >= 0 && i<this.rowLength  &&j >= 0 && j <this.rowLength  && this.isPossible(currentWord)){  
             ignores.push([currentRow, currentCol]);
             arrBoggles = arrBoggles.concat(this.solveBoggle(i,j,currentWord,ignores));
             ignores.pop();
+            currentWord.slice(0,-1) 
           }
         }
       }
-      
-      currentWord.slice(0,-1) 
       return arrBoggles
     }
   }
@@ -75,7 +67,6 @@ class Boggle{
     for (let i = 0; i <arrResult.length; i ++){
       console.log(arrResult[i])
     }
-
   }
 
   getLibMatch(word){
@@ -116,26 +107,33 @@ class Boggle{
     return arrOut
   }
 
-
-
+  printBoard(){
+    console.log('\n ==== BOGGLE ==== ')
+    let rowText = ''
+    for( let i = 0; i < this.rowLength ; i++){
+      for (let j = 0 ; j < this.colLength ; j++){
+        rowText += ' ' + this.board[i][j] + ' '  
+      }
+      rowText = ' | ' + rowText + ' | ';
+      console.log(rowText);
+      rowText = ''
+    }
+    console.log();
+  }
 }
-
-
-
-
 
 // DRIVER
 
+// For Test Only
 var testBoard = [ [ 'A', 'K', 'J', 'D' ],
 [ 'Z', 'A', 'O', 'H' ],
 [ 'G', 'E', 'B', 'R' ],
 [ 'T', 'F', 'J', 'V' ] ];
 
-var game = new Boggle(4,4, './data.js', testBoard);
+// Test using data.js words library
+var game = new Boggle(4,4, './data.js', testBoard); 
 game.shake();
 game.setLibrary();
-console.log(game.board)
+game.printBoard();
 game.solveAllBoggle();
 
-// console.log(game.clearRedundant(['a', 'a','b','b','c']))
-//  console.log(game.solveBoggle(2,2))
