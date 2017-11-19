@@ -1,14 +1,14 @@
 class Boggle {
   constructor(area){
     this.area = area
-    this.kamus = ['pet','dog','car','help','race']
+    this.kamus = ['pet','dog','car','help','race','angga']
     this.board = []
     this.possible = []
     this.firstLetter = ""
     this.result = []
   }
   shake(){
-    let abjad = 'petdogcarhelprace'
+    let abjad = 'petdogcarhelpraceangga'
     for(let i = 0; i < this.area;i++){
       let arrKosong = []
       for(let j = 0; j < this.area; j++){
@@ -72,279 +72,106 @@ class Boggle {
         //check koordinat dan sistem pengecekan
 
         if(posX > 0 && posX < this.board.length-1 && posY > 0 && posY < this.board.length-1){
-          // let surroundingLetters = []
           //check for 8 direction
-          //north
-          if(this.board[posX-1][posY] == this.possible[i][count]){
-            word += this.board[posX-1][posY]
-            return this.checkArea(posX-1,posY,word,count+1)
-          }
-          // [posX-1][posY])
-          //NE
-          // posX-1,posY-1
-          if(this.board[posX-1][posY-1] == this.possible[i][count]){
-            word += this.board[posX-1][posY-1]
-            return this.checkArea(posX-1,posY-1,word,count+1)
-          }
-          // [posX-1][posY+1])
-          //east
-          // posX,posY+1
-          if(this.board[posX][posY+1] == this.possible[i][count]){
-            word += this.board[posX][posY+1]
-            return this.checkArea(posX,posY+1,word,count+1)
-          }
-          // [posX][posY+1])
-          //southEast
-          // posX+1,posY+1
-          if(this.board[posX-1][posY] == this.possible[i][count]){
-            word += this.board[posX+1][posY+1]
-            return this.checkArea(posX+1,posY+1,word,count+1)
-          }
-          // [posX+1][posY+1])
-          //south
-          // posX+1,posY
-          if(this.board[posX+1][posY] == this.possible[i][count]){
-            word += this.board[posX+1][posY]
-            return this.checkArea(posX+1,posY,word,count+1)
-          }
-          // [posX+1][posY])
-          //southwest
-          // posX+1,posY-1
-          if(this.board[posX+1][posY-1] == this.possible[i][count]){
-            word += this.board[posX+1][posY-1]
-            return this.checkArea(posX+1,posY-1,word,count+1)
-          }
-          // [posX+1][posY-1])
-          //west
-          // posX,posY-1
-          if(this.board[posX][posY-1] == this.possible[i][count]){
-            word += this.board[posX][posY-1]
-            return this.checkArea(posX,posY-1,word,count+1)
-          }
-          // [posX][posY-1])
-          //northWest
-          // posX-1,posY-1
-          if(this.board[posX-1][posY-1] == this.possible[i][count]){
-            word += this.board[posX-1][posY-1]
-            return this.checkArea(posX-1,posY-1,word,count+1)
-          }
-          // [posX-1][posY-1])
 
+          let coordinates = [[(posX-1),(posY)],[(posX-1),(posY+1)],[(posX),(posY+1)],[(posX+1),(posY+1)],
+          [(posX+1),(posY)],[(posX+1),(posY-1)],[(posX),(posY-1)],[(posX-1),(posY-1)]]
 
+          for(let c = 0; c < coordinates.length;c++){
+            if(this.board[coordinates[c][0]][coordinates[c][1]] == this.possible[i][count]){
+              word += this.board[coordinates[c][0]][coordinates[c][1]]
+              return this.checkArea(coordinates[c][0],coordinates[c][1],word,count+1)
+            }
+          }
         }
         if(posX == 0 && posY == 0){
-          //east
-          // posX,posY+1
-          if(this.board[posX][posY+1] == this.possible[i][count]){
-            word += this.board[posX][posY+1]
-            return this.checkArea(posX,posY+1,word,count+1)
+          let coordinates = [[(posX),(posY+1)],[(posX+1),(posY)],[(posX+1),(posY-1)]]
+
+          for(let c = 0; c < coordinates.length;c++){
+            if(this.board[coordinates[c][0]][coordinates[c][1]] == this.possible[i][count]){
+              word += this.board[coordinates[c][0]][coordinates[c][1]]
+              return this.checkArea(coordinates[c][0],coordinates[c][1],word,count+1)
+            }
           }
-          // [posX][posY+1])
-          //southEast
-          // posX+1,posY+1
-          if(this.board[posX+1][posY+1] == this.possible[i][count]){
-            word += this.board[posX+1][posY+1]
-            return this.checkArea(posX+1,posY+1,word,count+1)
-          }
-          // [posX+1][posY+1])
-          //south
-          // posX+1,posY
-          if(this.board[posX+1][posY] == this.possible[i][count]){
-            word += this.board[posX+1][posY]
-            return this.checkArea(posX+1,posY,word,count+1)
-          }
+
         }
         if(posX == 0){
-          //east
-          // posX,posY+1
-          if(this.board[posX][posY+1] == this.possible[i][count]){
-            word += this.board[posX][posY+1]
-            return this.checkArea(posX,posY+1,word,count+1)
+          let coordinates = [[(posX),(posY+1)],[(posX+1),(posY+1)],
+          [(posX+1),(posY)],[(posX+1),(posY-1)],[(posX),(posY-1)]]
+
+          for(let c = 0; c < coordinates.length;c++){
+            if(this.board[coordinates[c][0]][coordinates[c][1]] == this.possible[i][count]){
+              word += this.board[coordinates[c][0]][coordinates[c][1]]
+              return this.checkArea(coordinates[c][0],coordinates[c][1],word,count+1)
+            }
           }
-          // [posX][posY+1])
-          //southEast
-          // posX+1,posY+1
-          if(this.board[posX+1][posY+1] == this.possible[i][count]){
-            word += this.board[posX+1][posY+1]
-            return this.checkArea(posX+1,posY+1,word,count+1)
-          }
-          // [posX+1][posY+1])
-          //south
-          // posX+1,posY
-          if(this.board[posX+1][posY] == this.possible[i][count]){
-            word += this.board[posX+1][posY]
-            return this.checkArea(posX+1,posY,word,count+1)
-          }
-          // [posX+1][posY])
-          //southwest
-          // posX+1,posY-1
-          if(this.board[posX+1][posY-1] == this.possible[i][count]){
-            word += this.board[posX+1][posY-1]
-            return this.checkArea(posX+1,posY-1,word,count+1)
-          }
-          // [posX+1][posY-1])
-          //west
-          // posX,posY-1
-          if(this.board[posX][posY-1] == this.possible[i][count]){
-            word += this.board[posX][posY-1]
-            return this.checkArea(posX,posY-1,word,count+1)
-          }
+
         }
         if(posX == 0 && posY < this.board.length-1){
-          //south
-          // posX+1,posY
-          if(this.board[posX+1][posY] == this.possible[i][count]){
-            word += this.board[posX+1][posY]
-            return this.checkArea(posX+1,posY,word,count+1)
+          let coordinates = [[(posX+1),(posY)],[(posX+1),(posY-1)],[(posX),(posY-1)]]
+
+          for(let c = 0; c < coordinates.length;c++){
+            if(this.board[coordinates[c][0]][coordinates[c][1]] == this.possible[i][count]){
+              word += this.board[coordinates[c][0]][coordinates[c][1]]
+              return this.checkArea(coordinates[c][0],coordinates[c][1],word,count+1)
+            }
           }
-          // [posX+1][posY])
-          //southwest
-          // posX+1,posY-1
-          if(this.board[posX+1][posY-1] == this.possible[i][count]){
-            word += this.board[posX+1][posY-1]
-            return this.checkArea(posX+1,posY-1,word,count+1)
-          }
-          // [posX+1][posY-1])
-          //west
-          // posX,posY-1
-          if(this.board[posX][posY-1] == this.possible[i][count]){
-            word += this.board[posX][posY-1]
-            return this.checkArea(posX,posY-1,word,count+1)
-          }
+
 
         }
         if(posX > 0 && posX < this.board.length-1 && posY == 0){
-          //NE
-          // posX-1,posY-1
-          if(this.board[posX-1][posY-1] == this.possible[i][count]){
-            word += this.board[posX-1][posY-1]
-            return this.checkArea(posX-1,posY-1,word,count+1)
-          }
-          // [posX-1][posY+1])
-          //east
-          // posX,posY+1
-          if(this.board[posX][posY+1] == this.possible[i][count]){
-            word += this.board[posX][posY+1]
-            return this.checkArea(posX,posY+1,word,count+1)
-          }
-          // [posX][posY+1])
-          //southEast
-          // posX+1,posY+1
-          if(this.board[posX+1][posY+1] == this.possible[i][count]){
-            word += this.board[posX+1][posY+1]
-            return this.checkArea(posX+1,posY+1,word,count+1)
-          }
-          // [posX+1][posY+1])
-          //south
-          // posX+1,posY
-          if(this.board[posX+1][posY] == this.possible[i][count]){
-            word += this.board[posX+1][posY]
-            return this.checkArea(posX+1,posY,word,count+1)
+          let coordinates = [[(posX-1),(posY)],[(posX-1),(posY+1)],[(posX),(posY+1)],[(posX+1),(posY+1)],
+          [(posX+1),(posY)]]
+
+          for(let c = 0; c < coordinates.length;c++){
+            if(this.board[coordinates[c][0]][coordinates[c][1]] == this.possible[i][count]){
+              word += this.board[coordinates[c][0]][coordinates[c][1]]
+              return this.checkArea(coordinates[c][0],coordinates[c][1],word,count+1)
+            }
           }
         }
         if(posX > 0 && posX < this.board.length -1 && posY == this.board.length-1){
-          //south
-          // posX+1,posY
-          if(this.board[posX+1][posY] == this.possible[i][count]){
-            word += this.board[posX+1][posY]
-            return this.checkArea(posX+1,posY,word,count+1)
+
+          let coordinates = [[(posX-1),(posY)],[(posX+1),(posY)],[(posX+1),(posY-1)],[(posX),(posY-1)],[(posX-1),(posY-1)]]
+
+          for(let c = 0; c < coordinates.length;c++){
+            if(this.board[coordinates[c][0]][coordinates[c][1]] == this.possible[i][count]){
+              word += this.board[coordinates[c][0]][coordinates[c][1]]
+              return this.checkArea(coordinates[c][0],coordinates[c][1],word,count+1)
+            }
           }
-          // [posX+1][posY])
-          //southwest
-          // posX+1,posY-1
-          if(this.board[posX+1][posY-1] == this.possible[i][count]){
-            word += this.board[posX+1][posY-1]
-            return this.checkArea(posX+1,posY-1,word,count+1)
-          }
-          // [posX+1][posY-1])
-          //west
-          // posX,posY-1
-          if(this.board[posX][posY-1] == this.possible[i][count]){
-            word += this.board[posX][posY-1]
-            return this.checkArea(posX,posY-1,word,count+1)
-          }
-          // [posX][posY-1])
-          //northWest
-          // posX-1,posY-1
-          if(this.board[posX-1][posY-1] == this.possible[i][count]){
-            word += this.board[posX-1][posY-1]
-            return this.checkArea(posX-1,posY-1,word,count+1)
-          }
+
         }
         if(posX == this.board.length-1 && posY == 0){
-          //north
-          if(this.board[posX-1][posY] == this.possible[i][count]){
-            word += this.board[posX-1][posY]
-            return this.checkArea(posX-1,posY,word,count+1)
+          let coordinates = [[(posX-1),(posY)],[(posX-1),(posY+1)],[(posX),(posY+1)]]
+
+          for(let c = 0; c < coordinates.length;c++){
+            if(this.board[coordinates[c][0]][coordinates[c][1]] == this.possible[i][count]){
+              word += this.board[coordinates[c][0]][coordinates[c][1]]
+              return this.checkArea(coordinates[c][0],coordinates[c][1],word,count+1)
+            }
           }
-          // [posX-1][posY])
-          //NE
-          // posX-1,posY-1
-          if(this.board[posX-1][posY-1] == this.possible[i][count]){
-            word += this.board[posX-1][posY-1]
-            return this.checkArea(posX-1,posY-1,word,count+1)
-          }
-          // [posX-1][posY+1])
-          //east
-          // posX,posY+1
-          if(this.board[posX][posY+1] == this.possible[i][count]){
-            word += this.board[posX][posY+1]
-            return this.checkArea(posX,posY+1,word,count+1)
-          }
+
         }
         if(posX == this.board.length-1){
-          let surroundingLetters = []
-          //north
-          if(this.board[posX-1][posY] == this.possible[i][count]){
-            word += this.board[posX-1][posY]
-            return this.checkArea(posX-1,posY,word,count+1)
+          let coordinates = [[(posX-1),(posY)],[(posX-1),(posY+1)],[(posX),(posY+1)],[(posX),(posY-1)],[(posX-1),(posY-1)]]
+
+          for(let c = 0; c < coordinates.length;c++){
+            if(this.board[coordinates[c][0]][coordinates[c][1]] == this.possible[i][count]){
+              word += this.board[coordinates[c][0]][coordinates[c][1]]
+              return this.checkArea(coordinates[c][0],coordinates[c][1],word,count+1)
+            }
           }
-          // [posX-1][posY])
-          //NE
-          // posX-1,posY-1
-          if(this.board[posX-1][posY-1] == this.possible[i][count]){
-            word += this.board[posX-1][posY-1]
-            return this.checkArea(posX-1,posY-1,word,count+1)
-          }
-          // [posX-1][posY+1])
-          //east
-          // posX,posY+1
-          if(this.board[posX][posY+1] == this.possible[i][count]){
-            word += this.board[posX][posY+1]
-            return this.checkArea(posX,posY+1,word,count+1)
-          }
-          //west
-          // posX,posY-1
-          if(this.board[posX][posY-1] == this.possible[i][count]){
-            word += this.board[posX][posY-1]
-            return this.checkArea(posX,posY-1,word,count+1)
-          }
-          // [posX][posY-1])
-          //northWest
-          // posX-1,posY-1
-          if(this.board[posX-1][posY-1] == this.possible[i][count]){
-            word += this.board[posX-1][posY-1]
-            return this.checkArea(posX-1,posY-1,word,count+1)
-          }
+
         }
         if(posX == this.board.length-1 && posY == this.board.length-1){
-          let surroundingLetters = []
-          //north
-          if(this.board[posX-1][posY] == this.possible[i][count]){
-            word += this.board[posX-1][posY]
-            return this.checkArea(posX-1,posY,word,count+1)
-          }
-          //northWest
-          // posX-1,posY-1
-          if(this.board[posX-1][posY-1] == this.possible[i][count]){
-            word += this.board[posX-1][posY-1]
-            return this.checkArea(posX-1,posY-1,word,count+1)
-          }
-          //west
-          // posX,posY-1
-          if(this.board[posX][posY-1] == this.possible[i][count]){
-            word += this.board[posX][posY-1]
-            return this.checkArea(posX,posY-1,word,count+1)
+          let coordinates = [[(posX-1),(posY)],[(posX),(posY-1)],[(posX-1),(posY-1)]]
+
+          for(let c = 0; c < coordinates.length;c++){
+            if(this.board[coordinates[c][0]][coordinates[c][1]] == this.possible[i][count]){
+              word += this.board[coordinates[c][0]][coordinates[c][1]]
+              return this.checkArea(coordinates[c][0],coordinates[c][1],word,count+1)
+            }
           }
       }
     }
