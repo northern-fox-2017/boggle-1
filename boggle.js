@@ -9,6 +9,7 @@ class Boggle {
     this.dataKamus = words
     this.simulasiKamus = ['HUNT', 'METEOR', 'STAB', 'DOOM', 'RUN', 'ROSE']
     this.random = 0
+    this.simpanHurufPertama = []
   }
 
   shakeBoard(box){
@@ -33,14 +34,21 @@ class Boggle {
     return this.boxSimulasi
   }
 
-  cekHurufSimulasi(){
-    for (let i = 0; i < 4; i++) {
-      for (let j = 0; j < 4; j++) {
-        if (this.boxSimulasi[i][j] == this.simulasiKamus[0][0]) {
-          console.log(this.simulasiKamus[0][0]);
+  cekHurufSimulasiPertama(){
+    for (let i = 0; i < this.boxSimulasi.length; i++) {
+      for (let j = 0; j < this.boxSimulasi.length; j++) {
+        for (var k = 0; k < this.simulasiKamus.length; k++) {
+          if (this.boxSimulasi[i][j] == this.simulasiKamus[k][0]) {
+            this.simpanHurufPertama.push([i, j])
+          }
         }
       }
     }
+    return this.simpanHurufPertama
+  }
+
+  cekDimensi(){
+    
   }
 }
 
@@ -51,4 +59,4 @@ let boggle = new Boggle()
 console.log();
 console.log(boggle.simulasiBoard())
 // console.log(boggle.dataKamus[1]);
-console.log(boggle.simulasiKamus[0][0]);
+console.log(boggle.cekHurufSimulasiPertama());
