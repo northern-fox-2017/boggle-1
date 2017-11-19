@@ -58,7 +58,13 @@ class Boggle{
     zone.push ( (+col + 1) + row)
     zone.push ( (+col + 1) +''+ (+row + 1 ))
     zone.push ( col + (+row + 1 ))
-    console.log(zone);
+    for (let i = 0; i < this.arrObj.length; i++) {
+      if (this.arrObj[i].huruf == huruf && zone.indexOf(this.arrObj[i].kordinat) != -1) {
+        this.arrObj[i].mark = true
+        return this.arrObj[i]
+      }
+    }
+    return -1
   }
 
   pojokKiriBawah (obj, huruf) {
@@ -68,7 +74,13 @@ class Boggle{
     zone.push ( (+col - 1) + row)
     zone.push ( (+col - 1) +''+ (+row + 1))
     zone.push ( col + (+row + 1))
-    console.log(zone);
+    for (let i = 0; i < this.arrObj.length; i++) {
+      if (this.arrObj[i].huruf == huruf && zone.indexOf(this.arrObj[i].kordinat) != -1) {
+        this.arrObj[i].mark = true
+        return this.arrObj[i]
+      }
+    }
+    return -1
   }
 
   pojokKananAtas (obj, huruf) {
@@ -78,7 +90,13 @@ class Boggle{
     zone.push ( col + (+row - 1))
     zone.push ( (+col + 1) + row )
     zone.push ( (+col + 1) +''+ (+row - 1))
-    console.log(zone);
+    for (let i = 0; i < this.arrObj.length; i++) {
+      if (this.arrObj[i].huruf == huruf && zone.indexOf(this.arrObj[i].kordinat) != -1) {
+        this.arrObj[i].mark = true
+        return this.arrObj[i]
+      }
+    }
+    return -1
   }
 
   pojokKananBawah (obj, huruf) {
@@ -88,7 +106,13 @@ class Boggle{
     zone.push ( col + (+row - 1))
     zone.push ( (+col - 1) +''+ (+row - 1))
     zone.push ( (+col -1) + row )
-    console.log(zone);
+    for (let i = 0; i < this.arrObj.length; i++) {
+      if (this.arrObj[i].huruf == huruf && zone.indexOf(this.arrObj[i].kordinat) != -1) {
+        this.arrObj[i].mark = true
+        return this.arrObj[i]
+      }
+    }
+    return -1
   }
 
   pinggirAtas (obj, huruf) {
@@ -100,7 +124,13 @@ class Boggle{
     zone.push ( ( +col + 1 ) + row )
     zone.push ( (+col + 1) +''+ (+row - 1 ))
     zone.push ( (+col + 1) +''+ (+row + 1 ))
-    console.log(zone);
+    for (let i = 0; i < this.arrObj.length; i++) {
+      if (this.arrObj[i].huruf == huruf && zone.indexOf(this.arrObj[i].kordinat) != -1) {
+        this.arrObj[i].mark = true
+        return this.arrObj[i]
+      }
+    }
+    return -1
   }
 
   pinggirKiri (obj, huruf) {
@@ -112,7 +142,13 @@ class Boggle{
     zone.push ( (+col + 1) + row)
     zone.push ( (+col + 1) +''+ (+row + 1))
     zone.push ( col + ( +row + 1 ))
-    console.log(zone);
+    for (let i = 0; i < this.arrObj.length; i++) {
+      if (this.arrObj[i].huruf == huruf && zone.indexOf(this.arrObj[i].kordinat) != -1) {
+        this.arrObj[i].mark = true
+        return this.arrObj[i]
+      }
+    }
+    return -1
   }
 
   pinggirBawah (obj, huruf) {
@@ -124,7 +160,13 @@ class Boggle{
     zone.push ( (+col - 1) +''+ (+row - 1))
     zone.push ( (+col - 1) + row )
     zone.push ( (+col - 1) +''+ (+row + 1))
-    console.log(zone);
+    for (let i = 0; i < this.arrObj.length; i++) {
+      if (this.arrObj[i].huruf == huruf && zone.indexOf(this.arrObj[i].kordinat) != -1) {
+        this.arrObj[i].mark = true
+        return this.arrObj[i]
+      }
+    }
+    return -1
   }
 
   pinggirKanan (obj, huruf) {
@@ -136,7 +178,13 @@ class Boggle{
     zone.push ( col + (+row - 1))
     zone.push ( (+col + 1) +''+ (+row - 1))
     zone.push ( (+col + 1) + row )
-    console.log(zone);
+    for (let i = 0; i < this.arrObj.length; i++) {
+      if (this.arrObj[i].huruf == huruf && zone.indexOf(this.arrObj[i].kordinat) != -1) {
+        this.arrObj[i].mark = true
+        return this.arrObj[i]
+      }
+    }
+    return -1
   }
 
   cariKataKotakMid (obj, huruf) {
@@ -168,21 +216,61 @@ class Boggle{
       let col = obj.kordinat[0]
       let row = obj.kordinat[1]
       for (let i = 1; i < kamus.length; i++ ){
-        if (col > 0 && row > 0) {
+        if (col > 0 && col < this.board.length-1 && row > 0 && row < this.board[i].length-1) {
           if(this.cariKataKotakMid(obj, kamus[i]) != -1 ) {
             result.push(this.cariKataKotakMid(obj, kamus[i]))
+          }
+        }else if (col == 0 && row > 0 && row < this.board[i].length-1) {
+          if(this.pinggirAtas(obj, kamus[i]) != -1 ) {
+            result.push(this.pinggirAtas(obj, kamus[i]))
+          }
+        }else if (col == this.board.length -1 && row > 0 && row < this.board[i].length-1) {
+          if(this.pinggirBawah(obj, kamus[i]) != -1 ) {
+            result.push(this.pinggirBawah(obj, kamus[i]))
+          }
+        }else if (col > 0 && col < this.board.length-1 && row == 0 ) {
+          if(this.pinggirKiri(obj, kamus[i]) != -1 ) {
+            result.push(this.pinggirKiri(obj, kamus[i]))
+          }
+        }else if (col > 0 && col < this.board.length-1 && row == this.board[i].length -1 ) {
+          if(this.pinggirKanan(obj, kamus[i]) != -1 ) {
+            result.push(this.pinggirKanan(obj, kamus[i]))
+          }
+        }else if (col == 0 && row == 0) {
+          if(this.pojokKiriAtas(obj, kamus[i]) != -1 ) {
+            result.push(this.pojokKiriAtas(obj, kamus[i]))
+          }
+        }else if (col == this.board.length-1 && row == 0) {
+          if(this.pojokKiriBawah(obj, kamus[i]) != -1 ) {
+            result.push(this.pojokKiriBawah(obj, kamus[i]))
+          }
+        }else if (col == 0 && row == this.board[i].length-1) {
+          if(this.pojokKananAtas(obj, kamus[i]) != -1 ) {
+            result.push(this.pojokKananAtas(obj, kamus[i]))
+          }
+        }else if (col == this.board.length-1 && row == this.board[i].length-1) {
+          if(this.pojokKananBawah(obj, kamus[i]) != -1 ) {
+            result.push(this.pojokKananBawah(obj, kamus[i]))
           }
         }
       }
     }
-    console.log(result);
+    let arrRes = []
+    result.forEach((huruf)=>{
+      arrRes.push(huruf.huruf)
+    })
+    if(result.length < kamus.length){
+      console.log('no words found '+arrRes);
+    }else{
+      console.log(`words found ${arrRes.join('')}`);
+    }
   }
 }
 
 let boggle = new Boggle(4,4)
 boggle.shake()
 boggle.initAbjad()
-//boggle.search('vaolo');
+boggle.search('ttp');
 //boggle.pojokKananBawah(boggle.arrObj[15])
 //console.log(boggle.board);
 //console.log(boggle.cariKataKotakMid(boggle.arrObj[6],'a'))
