@@ -8,7 +8,7 @@ class Boggle {
                    [ 'C', 'J', 'M', 'Z' ],
                    [ 'D', 'K', 'P', 'X' ],
                    [ 'O', 'S', 'C', 'N' ]]
-    this.kamus = ['KASA','DILE','EZE','TILE','MKPX','KCJM']
+    this.kamus = ['KASA','DILE','EZE','TILE','MKPX','MJMJ']
     this.posisi = []
     this.result = []
     this.dataKamus = words
@@ -88,52 +88,55 @@ class Boggle {
 
       for (var j = 0; j < this.arr.length; j++) {
         // console.log(this.arr);
-        if (baris == this.arr[j].x && kolom == this.arr[j].y && this.arr[j].value == kamus[k][i] && this.arr[i].status != false) {
-          this.arr[i].status = false
+        if (baris == this.arr[j].x && kolom == this.arr[j].y && this.arr[j].value == kamus[k][i] && this.arr[j].status === true) {
+          this.arr[j].status = false
+          console.log(this.arr[j].status);
           cariKata+= this.arr[j].value
         }
-        else if (baris + 1 == this.arr[j].x && kolom == this.arr[j].y && this.arr[j].value == kamus[k][i] && this.arr[i].status != false) {
-          this.arr[i].status = false
+        else if (baris + 1 == this.arr[j].x && kolom == this.arr[j].y && this.arr[j].value == kamus[k][i]&& this.arr[j].status === true) {
+          this.arr[j].status = false
           baris += 1
           cariKata+= this.arr[j].value
         }
-        else if (baris == this.arr[j].x && kolom + 1 == this.arr[j].y && this.arr[j].value == kamus[k][i] && this.arr[i].status != false) {
-          this.arr[i].status = false
+        else if (baris == this.arr[j].x && kolom + 1 == this.arr[j].y && this.arr[j].value == kamus[k][i] && this.arr[j].status === true) {
+          this.arr[j].status = false
           kolom += 1
           cariKata+= this.arr[j].value
         }
-        else if (baris - 1 == this.arr[j].x && kolom == this.arr[j].y && this.arr[j].value == kamus[k][i] && this.arr[i].status != false) {
-          this.arr[i].status = false
+        else if (baris - 1 == this.arr[j].x && kolom == this.arr[j].y && this.arr[j].value == kamus[k][i] && this.arr[j].status === true) {
+          this.arr[j].status = false
+          console.log(`${kamus[k][i]} baris ${baris} kolom ${kolom} ${this.arr[j].value}`);
           baris -= 1
           cariKata+= this.arr[j].value
         }
-        else if (baris == this.arr[j].x && kolom -1 == this.arr[j].y && this.arr[j].value == kamus[k][i] && this.arr[i].status != false) {
-          this.arr[i].status = false
+        else if (baris == this.arr[j].x && kolom -1 == this.arr[j].y && this.arr[j].value == kamus[k][i] && this.arr[j].status === true) {
+          this.arr[j].status = false
           kolom -= 1
           cariKata+= this.arr[j].value
         }
-        else if (baris + 1 == this.arr[j].x && kolom + 1 == this.arr[j].y && this.arr[j].value == kamus[k][i] && this.arr[i].status != false) {
-          this.arr[i].status = false
+        else if (baris + 1 == this.arr[j].x && kolom + 1 == this.arr[j].y && this.arr[j].value == kamus[k][i] && this.arr[j].status === true) {
+          this.arr[j].status = false
           baris += 1,kolom += 1
           cariKata+= this.arr[j].value
         }
-        else if (baris + 1 == this.arr[j].x && kolom -1 == this.arr[j].y && this.arr[j].value == kamus[k][i] && this.arr[i].status != false) {
-          this.arr[i].status = false
+        else if (baris + 1 == this.arr[j].x && kolom -1 == this.arr[j].y && this.arr[j].value == kamus[k][i] && this.arr[j].status === true) {
+          this.arr[j].status = false
           baris += 1, kolom -= 1
           cariKata+= this.arr[j].value
         }
-        else if (baris - 1 == this.arr[j].x && kolom +1 == this.arr[j].y && this.arr[j].value == kamus[k][i] && this.arr[i].status != false) {
-          this.arr[i].status = false
+        else if (baris - 1 == this.arr[j].x && kolom +1 == this.arr[j].y && this.arr[j].value == kamus[k][i] && this.arr[j].status === true) {
+          this.arr[j].status = false
           baris -= 1, kolom += 1
           cariKata+= this.arr[j].value
         }
-        else if (baris - 1 == this.arr[j].x && kolom -1 == this.arr[j].y && this.arr[j].value == kamus[k][i] && this.arr[i].status != false) {
-          this.arr[i].status = false
+        else if (baris - 1 == this.arr[j].x && kolom -1 == this.arr[j].y && this.arr[j].value == kamus[k][i] && this.arr[j].status === true) {
+          this.arr[j].status = false
           baris -= 1, kolom -= 1
           cariKata+= this.arr[j].value
         }
       }
     }
+    console.log(cariKata);
     this.result.push(cariKata)
     cariKata = ''
   }
