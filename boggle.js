@@ -74,43 +74,49 @@ class Boggleboard {
         //cek kiri bawah
         if(i == 5 && kolom-1>-1 && baris+1 < grid){
             if(grid[kolom-1][baris+1] == huruf && this.checkHistory(kolom-1,baris+1)==true){return this.koor.push([kolom-1,baris+1])}
-          }
+        }
         // cek kiri
         if(i == 6 && kolom-1 >-1){
             if(grid[kolom-1][baris] == huruf && this.checkHistory(kolom-1,baris)==true){return this.koor.push([kolom-1,baris])}
-          }
+        }
 
         // cek kiri atas
         if(i == 7 && kolom-1 > -1 && baris-1 > -1){
             if(grid[kolom-1][baris-1] == huruf && this.checkHistory(kolom-1,baris-1== true)){return this.koor.push([kolom-1,baris-1])}
-          }
+        }
 
       }
         return this.koor;
     }
 
     solve (){
-        console.log(this.kamus.length)
-        for(var i = 0; i < this.kamus.length; i++){
-          let status = false;
-          for(var j = 0; j < this.papan.length; j++){
-            for(var k = 0; k < this.papan[j].length; k++){
-            if(this.kamus[i][0] === this.papan[j][k]){
-            this.koor = [[j,k]];
+      // console.log(this.kamus.length)
+      for(var i = 0; i < this.kamus.length; i++){
+      let status = false;
+      for(var j = 0; j < this.papan.length; j++){
+      for(var k = 0; k < this.papan[j].length; k++){
+      if(this.kamus[i][0] === this.papan[j][k]){
+      this.koor = [[j,k]];
             //debugger
-            if(this.checkHuruf(this.kamus[i])===true){
-            this.found.push(this.kamus[i])
-            status = true;
-            break;
-            }
-          }
-        }
-          if(status==true){
-            break;
-          }
-        }
+      if(this.checkHuruf(this.kamus[i])===true){
+      this.found.push(this.kamus[i])
+      status = true;
+      break;
       }
     }
+  }
+      if(status==true){
+      break;
+      }
+    }
+  }
+    if(this.found.length === 0){
+    console.log('Not Found')
+    } else {
+    console.log(`${this.found.length} kata ditemukan:`)
+    return this.found.join();
+    }
+  }
 
 }
 
