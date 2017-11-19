@@ -8,7 +8,7 @@ class Boggle {
                    [ 'C', 'J', 'M', 'Z' ],
                    [ 'D', 'K', 'P', 'X' ],
                    [ 'O', 'S', 'C', 'N' ]]
-    this.kamus = ['KASA','DILE','EZE','TILE','MKPX','MJMJ']
+    this.kamus = ['KASA','DILE','EZE','TILE','MKPX','MJMJ','LELE','KPK']
     this.posisi = []
     this.result = []
     this.dataKamus = words
@@ -90,7 +90,7 @@ class Boggle {
         // console.log(this.arr);
         if (baris == this.arr[j].x && kolom == this.arr[j].y && this.arr[j].value == kamus[k][i] && this.arr[j].status === true) {
           this.arr[j].status = false
-          console.log(this.arr[j].status);
+          // console.log(this.arr[j].status);
           cariKata+= this.arr[j].value
         }
         else if (baris + 1 == this.arr[j].x && kolom == this.arr[j].y && this.arr[j].value == kamus[k][i]&& this.arr[j].status === true) {
@@ -105,7 +105,7 @@ class Boggle {
         }
         else if (baris - 1 == this.arr[j].x && kolom == this.arr[j].y && this.arr[j].value == kamus[k][i] && this.arr[j].status === true) {
           this.arr[j].status = false
-          console.log(`${kamus[k][i]} baris ${baris} kolom ${kolom} ${this.arr[j].value}`);
+          // console.log(`${kamus[k][i]} baris ${baris} kolom ${kolom} ${this.arr[j].value}`);
           baris -= 1
           cariKata+= this.arr[j].value
         }
@@ -136,7 +136,7 @@ class Boggle {
         }
       }
     }
-    console.log(cariKata);
+    // console.log(cariKata);
     this.result.push(cariKata)
     cariKata = ''
   }
@@ -173,12 +173,13 @@ let game = new Boggle (4,words);
 game.board();
 
 console.log(game.boardShake);
-// console.log(game.checkKamus());
+console.log();
+console.log(game.dummy);
 // game.checkHuruf('D');
 // game.checkHuruf('D');
 game.checkPosisi();
 //
-console.log(game.arr);
+// consolgame.arr);
 //
 console.log(game.checkKata());
 //
