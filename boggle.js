@@ -3,16 +3,29 @@ class Boggleboard {
     constructor(kamus) {
         this.kamus = kamus,
         this.papan = [],
-        this. abjad = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-
+        this.koor  = [],
+        this.abjad = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
     }
-    board() {
+
+    checkHuruf (kata){
+      //let boo = kata.split('')
+      for(var i = 1; i < kata.length; i++){
+           this.cekArea(this.koor[this.koor.length-1][0],this.koor[this.koor.length-1][1],kata[i])
+      }
+          if(this.koor.length === kata.length){
+              return true;
+          } else {
+              return false;
+          }
+     }
+
+    shake() {
       let count = 0
-      for (var i = 0; i < 4; i++) {
+      for (let i = 0; i < 4; i++) {
         this.papan.push([])
       }
 
-      for (var j = 0; j < 16; j++) {
+      for (let j = 0; j < 16; j++) {
         let random = Math.floor(Math.random() * this.abjad.length)
         this.papan[count].push(this.abjad[random])
         if (count < 3) {
@@ -24,6 +37,57 @@ class Boggleboard {
       return this.papan
     }
 
+    checkHistory(baris, kolom) {
+      for (let i = 0; i < koor.length; i++) {
+        if (this.koor[i][1] == baris && this.koor[i][0 == kolom]) {
+          return false
+        }
+      }
+      return true
+    }
+
+    checkArea (baris, kolom, huruf){
+        let grid = this.papan
+        for(var i =0; i < 8; i++){
+
+         //cek atas
+         if(i == 0 && baris-1 > -1){
+            if(grid[kolom][baris-1] == huruf&& this.checkHistory(kolom,baris-1)==true){return this.koor.push([kolom,baris-1])}
+        }
+         //cek kanan atas
+         if(i == 1 && kolom+1 < grid && baris-1 > -1){
+            if(grid[kolom+1][baris-1] == huruf && this.checkHistory(kolom+1,baris-1)==true){return this.koor.push([kolom+1,baris-1])}
+        }
+         //cek kanan
+         if(i == 2 && kolom+1 < grid){
+            if(grid[kolom+1][baris] == huruf && this.checkHistory(kolom+1,baris)==true){return this.koor.push([kolom+1,baris])}
+        }
+        //cek kanan bawah
+        if(i == 3 && kolom+1 < grid && baris+1<grid){
+            if(grid[kolom+1][baris+1] == huruf && this.checkHistory(kolom+1,baris+1)==true){return this.koor.push([kolom+1,baris+1])}
+        }
+         //cek bawah
+        if(i == 4 && baris+1<grid){
+            if(grid[kolom][baris+1] === huruf && this.checkHistory(kolom,baris+1)==true){return this.koor.push([kolom,baris+1])}
+        }
+        //cek kiri bawah
+        if(i == 5 && kolom-1>-1 && baris+1 < grid){
+            if(grid[kolom-1][baris+1] == huruf && this.checkHistory(kolom-1,baris+1)==true){return this.koor.push([kolom-1,baris+1])}
+          }
+        // cek kiri
+        if(i == 6 && kolom-1 >-1){
+            if(grid[kolom-1][baris] == huruf && this.checkHistory(kolom-1,baris)==true){return this.koor.push([kolom-1,baris])}
+          }
+
+        // cek kiri atas
+        if(i == 7 && kolom-1 > -1 && baris-1 > -1){
+            if(grid[kolom-1][baris-1] == huruf && this.checkHistory(kolom-1,baris-1== true)){return this.koor.push([kolom-1,baris-1])}
+          }
+
+      }
+        return this.koor;
+    }
+
     solve (){
 
     }
@@ -33,4 +97,5 @@ class Boggleboard {
 
 let play = new Boggleboard();
 
-console.log(play.board(4))
+console.log(play.shake(4))
+// console.log(play.checkHistory())
