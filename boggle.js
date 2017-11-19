@@ -106,4 +106,4 @@ class Boggle {
 
 var boggle1 = new Boggle()
 
-console.log(boggle1.checkBoggle(4, 4, '-'));
+console.log(boggle1.checkBoggle(4, 4, '-')); //check string -
