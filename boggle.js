@@ -33,12 +33,11 @@ class Boogle {
 
   checkArea(r,c,a){
     let isHuruf = false;
-//Jika r atau c nya 0
-    if(r == 0 || c == 0){
+//Jika r dan c nya 0
+    if(r == 0 && c == 0){
       for (var _r = 0; _r <= (r+1); _r++) {
         for (var _c = 0; _c <= (c+1); _c++){
-        console.log(`r: ${_r}`);
-        console.log(`c: ${_c}`);
+        // console.log(`r: ${_r} c: ${_c}`);
           if(this.papan[_r][_c] == a){
             isHuruf = true;
           }
@@ -47,10 +46,10 @@ class Boogle {
       return isHuruf;
     }
 // kalo row dah mentok
-    if(r == this.papan.length-1){
+    if(r >= this.papan.length-1){
       for (var _r = r-1; _r <= r; _r++) {
         for (var _c = c-1; _c <= (c+1); _c++){
-        console.log(`r: ${_r} c: ${_c}`);
+        // console.log(`r: ${_r} c: ${_c}`);
           if(this.papan[_r][_c] == a){
             isHuruf = true;
           }
@@ -59,30 +58,41 @@ class Boogle {
     return isHuruf;
     }
 // kalo col dah mentok
-    if(c == this.papan.length-1){
+    if(c >= this.papan.length-1){
       for (var _r = r-1; _r <= (r+1); _r++) {
         for (var _c = c-1; _c <= c; _c++){
-        console.log(`r: ${_r} c: ${_c}`);
+        // console.log(`r: ${_r} c: ${_c}`);
           if(this.papan[_r][_c] == a){
             isHuruf = true;
           }
         }
       }
     return isHuruf;
-    }
-//standard
-    for (var _r = Math.abs(r-1); _r <= (r+1); _r++) {
-      for (var _c = Math.abs(c-1); _c <= (c+1); _c++){
-      console.log(`r: ${_r}` );
-      console.log(`c: ${_c}`);
-        if(this.papan[_r][_c] == a){
-          console.log(_r + '' + _c);
+  }
+
+//pojok kanan atas
+  if(c >= this.papan.length-1 && r == 0){
+    for (var _r = r; _r <= (r+1); _r++) {
+      for (var _c = (c-1); _c < (c+1); _c++) {
+          // console.log(`r: ${_r} c: ${_c}`);
+          if(this.papan[_r][_c] == a){
           isHuruf = true;
         }
       }
-        return isHuruf;
     }
+    return isHuruf;
+  }
 
+//standard
+    for (var _r = Math.abs(r-1); _r <= (r+1); _r++) {
+      for (var _c = Math.abs(c-1); _c <= (c+1); _c++){
+      // console.log(`r: ${_r} c: ${_c}`);
+        if(this.papan[_r][_c] == a){
+          isHuruf = true;
+        }
+      }
+    }
+      return isHuruf;
   }
 }
 
@@ -91,7 +101,13 @@ let game = new Boogle();
 
 
 // game.shake(6);
-// console.log(game.solve());
+console.log(game.solve());
 // game.solve()
-console.log(game.checkArea(0,8,'S'))
+console.log(game.checkArea(1,5,'A')); //cek col mentok = false
+console.log(game.checkArea(0,0,'Y')); //cek nol nol = true
+console.log(game.checkArea(5,2,'B')); //cek row mentok = true
+console.log(game.checkArea(1,1,'Z')); //cek standar = false
+console.log(game.checkArea(5,0,'I')); // cek pkiri bawah = true
+console.log(game.checkArea(5,5,'L')); // cek pkanan bawah = true
+
 // console.log(game.board());
