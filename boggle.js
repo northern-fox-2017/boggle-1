@@ -7,12 +7,12 @@ class Boggle {
                    [ 'C', 'J', 'M', 'Z' ],
                    [ 'D', 'K', 'P', 'X' ],
                    [ 'O', 'S', 'C', 'N' ]]
-    this.kamus = ['OSK','DILE','EZE','TILE']
+    this.kamus = ['KASA','DILE','EZE','TILE','MKPX','KCJM']
     this.posisi = []
     this.result = []
     this.dataKamus = words
   }
-
+// [ 'KS', 'DILE', 'EZE', 'MKPX', 'KCJM' ]
   board(){
     for (let i = 0 ; i < this.boardShake ; i++){
       this.arr.push([])
@@ -35,15 +35,19 @@ class Boggle {
   solve(){
     let counter = 0
     for (var i = 0; i < this.result.length; i++) {
-      if (this.result[i] == this.kamus[i]){
-        counter++
+      for (var j = 0; j < this.kamus.length; j++) {
+        if (this.result[i] == this.kamus[j]){
+          counter++
+        }
       }
     }
 
     console.log(`${counter} Word Found`);
-    for (var j = 0; j < this.result.length; j++) {
-      if (this.result[j] == this.kamus[j]){
-        console.log(this.result[j]);
+    for (var i = 0; i < this.result.length; i++) {
+      for (var j = 0; j < this.kamus.length; j++) {
+        if (this.result[i] == this.kamus[j]){
+          console.log(this.result[i]);
+        }
       }
     }
 
@@ -69,9 +73,7 @@ class Boggle {
     let cariKata = ''
     // console.log(kamus.length);
     // cari semua kemungkinan kata dari di index yang dikirim
-    // while (!flag) {
-    //
-    // }
+
     for (var k = 0; k < kamus.length; k++) {
       // this.arr = this.posisi
       let index = this.checkHuruf(kamus[k][0])
@@ -175,5 +177,5 @@ game.checkPosisi();
 console.log(game.arr);
 
 console.log(game.checkKata());
-console.log(game.arr);
+
 game.solve()
