@@ -21,37 +21,91 @@ class Boggle {
     }
 
     checkBoggle(col,row,input){
-        let count = 0
-        if(col==0 && row ==0){
-            for (let i = 0; i <= row+1; i++) {
-                for (let j= 0; j <= col+1; j++) {
-                    // console.log(count++)
-                    // console.log('\n')
+        debugger
+        
+        if(col==0 && row ==0){ //col min , row min
+            // for (let i = 0; i <= row+1; i++) {
+            //     for (let j= 0; j <= col+1; j++) {
+            //        
+            //         console.log(i)
+            //         console.log(j)
+            //         console.log('\n')
+            //     }
+            console.log('disini')
+                
+                
+            // }
+        }else  if  (col>0 && row == 0){ //col dinamis , row 0
+            // for (let i = 0; i <= (row+1); i++) {
+            //     for(let j = col-1; j <= col+1;j++){
+            //         console.log(i)
+            //         console.log(j)
+            //         console.log('\n')
+
+            //     }
+                
+                
+            // }
+        }
+        else if(col == 0 && row >0){ //col  0,row dinamis
+            for (let i = Math.abs(row-1); i <= row+1; i++) {
+                for (let j = 0; j <= col+1; j++) {
                     console.log(i)
                     console.log(j)
                     console.log('\n')
+                    
                 }
                 
-                
-            }
-        }else  if  (col==0){}
-
-
-        
-        else {
-            for (let i = Math.abs(row-1); i <= row+1; i++) {
-            for (let j = Math.abs(col-1); j <= col+1; j++) {
-                console.log(i)
-                console.log(j)
-                console.log('\n')
-                if(this.boggleBox[i][j]=== input){
-                    return false 
-                }
-                else  {
-                    this.status = true;
-                }
             }
         }
+        else if ((col == this.boggleBox.length-1) && (row < this.boggleBox.length-1)){  // col  = max, row dinamis
+            // for (let i = row-1; i <= row+1; i++) {
+            //     for (let j = col-1; j <= col; j++) {
+            //         console.log(i)   
+            //         console.log(j)
+            //         console.log('\n')
+                    
+            //     }
+                
+            // }
+
+        }else if ((col <this.boggleBox.length-1) && (row == this.boggleBox.length-1)){ // row =  max,  col dinamis
+            // for (let i = row-1; i <= row; i++) {
+            //     for (let j = col-1; j <= col+1; j++) {
+            //         console.log(i)
+            //         console.log(j)
+            //         console.log('\n')
+                    
+            //     }
+                
+                
+            // }
+        }else if ((col  == this.boggleBox.length-1) && (row == this.boggleBox.length-1)){ //col && row == max
+            // for (let i = row-1; i <= row; i++) {
+            //     for (let j = col-1; j <= col; j++) {
+            //         console.log(i)
+            //         console.log(j)
+            //         console.log('\n')
+                    
+            //     }
+
+            // }
+         }
+        else { 
+        //     for (let i = Math.abs(row-1); i <= row+1; i++) { // col == row
+        //     for (let j = Math.abs(col-1); j <= col+1; j++) {
+        //         console.log(i)
+        //         console.log(j)
+        //         console.log('\n')
+        //         if(this.boggleBox[i][j]=== input){
+        //             return false 
+        //         }
+        //         else  {
+        //             this.status = true;
+        //         }
+        console.log(this.boggleBox.length-1)
+        //     }
+        // }
         }
 
         
@@ -63,4 +117,4 @@ class Boggle {
 
 let main = new Boggle(4)
 // main.shake()
-console.log(main.checkBoggle(0,0,'A'))
+console.log(main.checkBoggle(0,1,'A'))
