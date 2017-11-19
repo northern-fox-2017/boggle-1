@@ -4,6 +4,7 @@ class Boggleboard {
         this.kamus = kamus,
         this.papan = [],
         this.koor  = [],
+        this.found = [],
         this.abjad = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
     }
 
@@ -89,13 +90,33 @@ class Boggleboard {
     }
 
     solve (){
-
+        console.log(this.kamus.length)
+        for(var i = 0; i < this.kamus.length; i++){
+          let status = false;
+          for(var j = 0; j < this.papan.length; j++){
+            for(var k = 0; k < this.papan[j].length; k++){
+            if(this.kamus[i][0] === this.papan[j][k]){
+            this.koor = [[j,k]];
+            //debugger
+            if(this.checkHuruf(this.kamus[i])===true){
+            this.found.push(this.kamus[i])
+            status = true;
+            break;
+            }
+          }
+        }
+          if(status==true){
+            break;
+          }
+        }
+      }
     }
 
 }
 
 
-let play = new Boggleboard();
+let play = new Boggleboard(kamus);
 
-console.log(play.shake(4))
+console.log(play.shake())
 // console.log(play.checkHistory())
+console.log(play.solve())
