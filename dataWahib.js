@@ -1,3 +1,3 @@
-var words = ['GET', 'AKA', 'AZGEB', 'AKJO', 'AKZJ', 'BRO', 'AHAYY', 'ASOY', 'BEG', 'GEBOK']
+var words = ['KAGAK','AZE' , 'BOBROK', 'BOR', 'ROBOH', 'AZGEB', 'BEG', 'GEBOK']
 
 exports.words = words
