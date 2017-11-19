@@ -1,7 +1,8 @@
 const words = require ('./data')
 class Boggle {
   constructor(num,words) {
-    this.boardShake = num
+    this.ukuranBoard = num
+    this.boardShake = []
     this.arr = []
     this.dummy = [ [ 'D', 'I', 'L', 'E' ],
                    [ 'C', 'J', 'M', 'Z' ],
@@ -14,10 +15,10 @@ class Boggle {
   }
 // [ 'KS', 'DILE', 'EZE', 'MKPX', 'KCJM' ]
   board(){
-    for (let i = 0 ; i < this.boardShake ; i++){
-      this.arr.push([])
-      for (let j = 0; j < this.boardShake ; j++){
-        this.arr[i].push(this.random())
+    for (let i = 0 ; i < this.ukuranBoard ; i++){
+      this.boardShake.push([])
+      for (let j = 0; j < this.ukuranBoard ; j++){
+        this.boardShake[i].push(this.random())
       }
     }
   }
@@ -166,16 +167,16 @@ class Boggle {
 
 let game = new Boggle (4,words);
 
-// game.board();
+game.board();
 
-console.log(game.dummy);
+console.log(game.boardShake);
 // console.log(game.checkKamus());
 // game.checkHuruf('D');
 // game.checkHuruf('D');
 game.checkPosisi();
-
+//
 console.log(game.arr);
-
+//
 console.log(game.checkKata());
-
+//
 game.solve()
