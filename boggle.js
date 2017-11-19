@@ -27,44 +27,31 @@ class Boggle {
     console.log(this.array);
   }
 
-  checkHuruf() {
-    let arr = [];
-    let tampung = '';
-    let startBaris = 0;
-    let startKolom = 0;
-    for(let i = 0 ; i < this.arr.length ; i++) {
-      for(let j = 0 ; j < this.array.length ; j++) {
-        if(this.arr[i][j] == this.array[0][0]) {
-          if(this.arr[i][j] < this.arr[1][1]) {
-            startBaris = 0;
-            startKolom = 0;
-          } else if(this.arr[i][j] < this.arr[2][2]) {
-            startBaris = 1;
-            startKolom = 1;
-          } else if(this.arr[i][j] < this.arr[3][3]) {
-            startBaris = 2;
-            startKolom = 2;
-          } else if(this.arr[i][j] < this.arr[4][4]) {
-            startBaris = 3;
-            startKolom = 4;
-          }
-      }
-    }
-  }
-  console.log(arr);
-}
-
-  // checkPosisiAtas(baris, kolom) {
-  //   let startBaris  = 0;
-  //   let finishBaris = 0;
-  //   let startKolom  = 0;
-  //   let finishKolom = 0;
-  //   if(baris == 0 && kolom == 0) {
-  //     startBaris  = 0;
-  //     finsihBaris = 1;
-  //     startKolom  = 0;
-  //     finishKolom = 1;
+  // checkHuruf() {
+  //   let arr = [];
+  //   let tampung = '';
+  //   let startBaris = 0;
+  //   let startKolom = 0;
+  //   for(let i = 0 ; i < this.arr.length ; i++) {
+  //     for(let j = 0 ; j < this.array.length ; j++) {
+  //       if(this.arr[i][j] == this.array[0][0]) {
+  //         if(this.arr[i][j] < this.arr[1][1]) {
+  //           startBaris = 0;
+  //           startKolom = 0;
+  //         } else if(this.arr[i][j] < this.arr[2][2]) {
+  //           startBaris = 1;
+  //           startKolom = 1;
+  //         } else if(this.arr[i][j] < this.arr[3][3]) {
+  //           startBaris = 2;
+  //           startKolom = 2;
+  //         } else if(this.arr[i][j] < this.arr[4][4]) {
+  //           startBaris = 3;
+  //           startKolom = 3;
+  //         }
+  //       }
+  //     }
   //   }
+  //   console.log(arr);
   // }
 
 }
@@ -73,5 +60,4 @@ let boggle = new Boggle()
 
 boggle.shake(4);
 boggle.generateKamusData();
-boggle.checkHuruf()
-// boggle.checkPosisiAtas(0,0)
+// boggle.checkHuruf()
