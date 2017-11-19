@@ -3,7 +3,7 @@ class Boggle{
     this.column = cols
     this.row = rows
     this.board = this.board()
-    this.kamus = ['bafaot']
+    //this.kamus = ['bafaot']
     this.arrObj = []
   }
   board(){
